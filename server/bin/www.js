@@ -4,9 +4,9 @@ import winston from '@server/config/winston';
  * Module dependencies.
  */
 
-import app from '../app';
 import Debug from 'debug';
-import http from 'http'
+import http from 'http';
+import app from '../app';
 
 const debug = Debug('projnotes:server');
 
@@ -61,7 +61,7 @@ function onError(error) {
       process.exit(1);
       break;
     case 'EADDRINUSE':
-    winston.error(`${bind} is already in use`);
+      winston.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -81,7 +81,7 @@ server.on('listening', onListening);
 
 function onListening() {
   const addr = server.address();
-  const bindAdr = 
+  const bindAdr =
     typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
   debug(`Listening on ${bindAdr}`);
 }
